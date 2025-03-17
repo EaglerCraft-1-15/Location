@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP Geolocation</title>
+</head>
+<body>
+<h2>Your Approximate Location:</h2>
+<p id="location">Fetching location...</p>
+
+<script>
+async function getLocation() {
+try {
+let response = await fetch('https://ipinfo.io/json?token=4782c34b2827e3'); // Replace with your token
+let data = await response.json();
+
+document.getElementById("location").innerText =
+`IP: ${data.ip}\nCity: ${data.city}\nRegion: ${data.region}\nCountry: ${data.country}`;
+} catch (error) {
+document.getElementById("location").innerText = "Failed to get location.";
+}
+}
+
+getLocation();
+</script>
+</body>
+</html>
